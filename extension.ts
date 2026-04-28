@@ -58,7 +58,7 @@ export function activate(context: vscode.ExtensionContext) {
                 for (let i = 0; i < allFiles.length; i++) {
                     const relPath = allFiles[i];
                     const fullPath = path.join(folderPath, relPath);
-                    zip.addLocalFile(fullPath, path.dirname(relPath));
+                    zip.addLocalFile(fullPath, path.dirname(relPath).split(path.sep).join('/'));
 
                     progress.report({
                         increment: 100 / total,
@@ -110,6 +110,11 @@ export function activate(context: vscode.ExtensionContext) {
                     for (let i = 0; i < entries.length; i++) {
                         const entry = entries[i];
                         const entryPath = path.join(targetDir, entry.entryName);
+                        const resolvedEntryPath = path.resolve(entryPath);
+                        const resolvedTargetDir = path.resolve(targetDir);
+                        if (!resolvedEntryPath.startsWith(resolvedTargetDir + path.sep) && resolvedEntryPath !== resolvedTargetDir) {
+                            throw new Error(`Unsafe path in zip entry: ${entry.entryName}`);
+                        }
 
                         if (entry.isDirectory) {
                             fs.mkdirSync(entryPath, { recursive: true });
