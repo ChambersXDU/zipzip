@@ -1,0 +1,72 @@
+{
+  "name": "zipzip",
+  "displayName": "zipzip",
+  "description": "极简压缩工具：右键压缩为zip，或解压各类压缩包",
+  "version": "0.1.1",
+  "publisher": "chambersxdu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "zip",
+    "compress",
+    "extract",
+    "archive",
+    "tar"
+  ],
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "zipzip.compress",
+        "title": "zipzip: 压缩为 .zip"
+      },
+      {
+        "command": "zipzip.extract",
+        "title": "zipzip: 解压到文件夹"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "zipzip.compress",
+          "when": "explorerResourceIsFolder",
+          "group": "7_modification"
+        },
+        {
+          "command": "zipzip.extract",
+          "when": "resourceFilename =~ /\\.(zip|tar|tgz|tar\\.gz)$/i",
+          "group": "7_modification"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.10",
+    "tar": "^6.2.0"
+  },
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.0",
+    "@types/node": "^16.x",
+    "@types/tar": "^6.1.0",
+    "@types/vscode": "^1.70.0",
+    "@vscode/vsce": "^3.7.1",
+    "typescript": "^4.7.4"
+  }
+}
