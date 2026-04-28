@@ -1,31 +1,30 @@
 # zipzip
 
-极简压缩 / 解压工具，在资源管理器右键菜单中操作，无需离开编辑器。
+A minimal compress / extract tool that works right from the Explorer context menu — no need to leave the editor.
 
-## 功能
+## Features
 
-- **压缩文件夹** → 右键文件夹 → `zipzip: 压缩为 .zip`
-- **解压压缩包** → 右键 `.zip` / `.tar` / `.tgz` / `.gz` 文件 → `zipzip: 解压到文件夹`
-- 自动处理重名：如果目标文件已存在，会自动追加 `-1`、`-2` 等序号
+- **Compress folder** → Right-click a folder → `zipzip: Compress to .zip`
+- **Extract archive** → Right-click a `.zip` / `.tar` / `.tgz` / `.tar.gz` file → `zipzip: Extract to folder`
+- Auto-handles name collisions: appends `-1`, `-2`, etc. if the target already exists
 
-## 支持格式
+## Supported Formats
 
-| 操作 | 格式 |
-|------|------|
-| 压缩 | `.zip` |
-| 解压 | `.zip`、`.tar`、`.tgz`、`.tar.gz` |
+| Operation | Formats |
+|-----------|---------|
+| Compress  | `.zip` |
+| Extract   | `.zip`, `.tar`, `.tgz`, `.tar.gz` |
 
-## 编译
+## Build
 
 ```bash
 npx vsce package
 ```
 
-## 使用方法
+## Usage
 
-1. 在 VS Code 资源管理器中右键任意文件夹或压缩包
-2. 选择对应菜单项
-3. 完成后会弹出通知提示
+1. Right-click a folder or archive in the VS Code Explorer
+2. Select the corresponding menu item
 
 ## License
 
